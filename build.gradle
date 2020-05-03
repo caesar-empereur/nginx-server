@@ -1,5 +1,4 @@
 group 'nginx-server'
-version '1.0'
 
 allprojects {
     repositories {
