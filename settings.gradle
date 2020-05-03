@@ -1,0 +1,4 @@
+rootProject.name = 'nginx-server'
+include 'manager-service'
+include 'webapi-service'
+
