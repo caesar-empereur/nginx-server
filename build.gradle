@@ -26,6 +26,11 @@ allprojects {
         options.encoding = 'UTF-8'
     }
 
+    task createEmptySrc {
+        sourceSets*.java.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs()}
+    }
+
     sourceSets {
         main {
             java {
