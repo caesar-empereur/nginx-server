@@ -2,20 +2,12 @@ group 'nginx-server'
 
 allprojects {
     repositories {
-        repositories {
-            jcenter()
-            maven { url "http://repo.spring.io/snapshot" }
-            maven { url "http://repo.spring.io/milestone" }
-            maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        }
+        mavenCentral()
     }
 
     buildscript {
         repositories {
-            jcenter()
-            maven { url 'http://repo.spring.io/snapshot' }
-            maven { url 'http://repo.spring.io/milestone' }
-            maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+            mavenCentral()
         }
         dependencies {
             classpath("org.springframework.boot:spring-boot-gradle-plugin:$version_spring_boot")
@@ -32,11 +24,6 @@ allprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
-    }
-
-    task createEmptySrc << {
-        sourceSets*.java.srcDirs*.each { it.mkdirs() }
-        sourceSets*.resources.srcDirs*.each { it.mkdirs()}
     }
 
     sourceSets {
@@ -59,21 +46,21 @@ allprojects {
     }
 
     dependencies{
-        compile "org.springframework.boot:spring-boot-starter-web:$version_spring_boot"
-        compile "org.springframework.boot:spring-boot-starter-data-jpa:$version_spring_boot"
-        compile "org.springframework.boot:spring-boot-starter-logging:$version_spring_boot"
+        implementation "org.springframework.boot:spring-boot-starter-web"
+        implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+        implementation "org.springframework.boot:spring-boot-starter-logging"
 
+        implementation "mysql:mysql-connector-java:5.1.39"
 
-        compile "mysql:mysql-connector-java:5.1.39"
-        compile "org.projectlombok:lombok:1.18.2"
-        compile "io.reactivex.rxjava2:rxjava:2.1.13"
-
-        compile "io.swagger:swagger-annotations:1.5.9"
-        compile "io.swagger:swagger-models:1.5.9"
-        compile "io.springfox:springfox-swagger2:2.5.0"
-        compile "io.springfox:springfox-swagger-ui:2.5.0"
+        implementation "io.swagger:swagger-annotations:1.5.9"
+        implementation "io.swagger:swagger-models:1.5.9"
+        implementation "io.springfox:springfox-swagger2:2.5.0"
+        implementation "io.springfox:springfox-swagger-ui:2.5.0"
 
         testCompile "junit:junit:4.11"
         testCompile "org.mockito:mockito-all:1.10.19"
+
+        annotationProcessor 'org.projectlombok:lombok:1.18.12'
+        compileOnly 'org.projectlombok:lombok:1.18.12'
     }
 }
