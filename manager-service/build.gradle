@@ -7,10 +7,6 @@ apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
-
 jar {
     baseName = 'manager'
 }
